@@ -151,6 +151,8 @@ PlayerSettings:
   bundleVersion: 0.1.1
   preloadedAssets:
   - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  - {fileID: -5233334536251068563, guid: a244e9421563cff4a8cde8ee67d9d813, type: 2}
+  - {fileID: -2742037431862754857, guid: a98c50a98fb871448bba7b5cfd17de69, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   xboxOneDisableKinectGpuReservation: 1
@@ -179,7 +181,7 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 3
+  AndroidBundleVersionCode: 4
   AndroidMinSdkVersion: 32
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
