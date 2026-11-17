@@ -319,6 +319,95 @@ public class OfficeSession : MonoBehaviour
         else if (Phase == "presentation") { midRatings += Fmt(Time.time - talkStart) + "=" + v + " "; Log("anxiety " + v); }
     }
 
+    // ================================================================= web panel (OfficeRemote, MQTT)
+    // Same actions as the doctor's PC window, for the ExposiaVR web panel. false = not possible in this phase.
+    public int AnxietyBefore => pre;
+    public int AnxietyAfter => post;
+    public int SlideCount => slides != null ? slides.Length : 0;
+
+    public bool RemoteSetLevel(int lv)
+    {
+        if (Phase != "menu" || lv < 1 || lv > 3) return false;
+        level = lv; ApplyLevel();
+        return true;
+    }
+
+    public bool RemoteSetDuration(int minutes)
+    {
+        if (Phase != "menu" || Array.IndexOf(Durations, minutes) < 0) return false;
+        duration = minutes; RefreshToggles();
+        return true;
+    }
+
+    public bool RemoteStart()
+    {
+        if (Phase != "menu") return false;
+        start = true;
+        return true;
+    }
+
+    public bool RemoteEnd()
+    {
+        if (Phase != "presentation") return false;
+        endTalk = true;
+        return true;
+    }
+
+    public bool RemoteSlide(int delta)
+    {
+        if (Phase != "presentation") return false;
+        SetSlide(Slide + delta);
+        return true;
+    }
+
+    public bool RemoteEvent(string id)
+    {
+        if (Phase != "presentation") return false;
+        Fire(id);
+        return true;
+    }
+
+    // prepared lines 1-7 = the doctor's number keys
+    public bool RemoteLine(int index)
+    {
+        if (Phase != "presentation" || index < 1 || index > DoctorEvents.Length) return false;
+        Fire(DoctorEvents[index - 1]);
+        return true;
+    }
+
+    // a question typed by the doctor (Azure TTS mp3), spoken by one of the listeners
+    public bool RemoteSay(AudioClip clip, bool female, int maleIndex, string text)
+    {
+        if (Phase != "presentation" || !clip) return false;
+        eventCount++;
+        StartCoroutine(SpeakClip(clip, PickVoice(female, maleIndex), text));
+        return true;
+    }
+
+    // prefer the people without recorded lines, so one person never has two different voices
+    OfficeListener PickVoice(bool female, int maleIndex)
+    {
+        var order = female ? new[] { "N1", "S2", "S0" } : new[] { "S1", "N2", "N0", "E" };
+        var cands = order.Select(s => Active.FirstOrDefault(l => l.seat == s)).Where(l => l != null).ToList();
+        if (cands.Count == 0) cands = Active.Where(l => l.female == female).ToList();
+        if (cands.Count == 0) return Active.First();
+        return cands[Mathf.Clamp(maleIndex, 0, cands.Count - 1)];
+    }
+
+    IEnumerator SpeakClip(AudioClip clip, OfficeListener who, string text)
+    {
+        while (asking) yield return null;
+        asking = true;
+        float len = who.Say(clip); if (len <= 0f) len = 2.5f;
+        ShowSub(text, len);
+        Log("Doctor's question (" + (who.female ? "f" : "m") + ", " + text.Length + " chars)");
+        foreach (var l in Active) if (l != who) l.LookAt(who.HeadPos, len * 0.8f);
+        yield return new WaitForSeconds(len * 0.8f);
+        foreach (var l in Active) l.LookAtPatient(level == 1 ? 3f : 5f);
+        yield return new WaitForSeconds(len * 0.2f + 0.3f);
+        asking = false;
+    }
+
     // ================================================================= save
     void Save(float talked)
     {

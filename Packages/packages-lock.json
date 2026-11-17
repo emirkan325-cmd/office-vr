@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.company.license": {
+      "version": "file:com.company.license",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.coplaydev.coplay": {
       "version": "https://github.com/CoplayDev/coplay-unity-plugin.git#beta",
       "depth": 0,

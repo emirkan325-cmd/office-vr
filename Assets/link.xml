@@ -1,0 +1,9 @@
+<!--
+  IL2CPP kod budamasi (managed stripping) MQTTnet'in ic tiplerini silmesin.
+  Unity bazi surumlerde paket icindeki link.xml'i islemez: uygulama projesinin
+  Assets/ klasorune de ayni icerikte bir link.xml koyun (README'ye bakin).
+-->
+<linker>
+  <assembly fullname="MQTTnet" preserve="all" />
+  <assembly fullname="Company.License.Runtime" preserve="all" />
+</linker>

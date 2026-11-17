@@ -1,0 +1,17 @@
+{
+  "name": "com.company.license",
+  "version": "0.2.0",
+  "displayName": "Company License Client",
+  "description": "Tum Unity projelerinde ortak kullanilan lisans aktivasyon/dogrulama ve uzaktan kontrol (MQTT) SDK'si. license-system backend'ine karsi calisir.",
+  "unity": "2021.3",
+  "keywords": [
+    "license",
+    "drm",
+    "vr",
+    "mqtt",
+    "remote-control"
+  ],
+  "author": {
+    "name": "Internal"
+  }
+}

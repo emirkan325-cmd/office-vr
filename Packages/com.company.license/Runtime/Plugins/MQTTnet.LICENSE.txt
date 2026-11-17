@@ -1,0 +1,3 @@
+MQTTnet 4.3.7.1207 (netstandard2.1) -- https://github.com/dotnet/MQTTnet
+NuGet: https://www.nuget.org/packages/MQTTnet/4.3.7.1207
+License: MIT. Copyright (c) .NET Foundation and Contributors.
