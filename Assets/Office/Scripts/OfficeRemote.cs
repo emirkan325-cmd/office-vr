@@ -16,8 +16,8 @@ using UnityEngine.Networking;
 //   office.level {level 1-3} / office.duration {minutes 3|5|10}   -> only in the menu
 //   office.start {} (menu) / office.end {} (presentation)
 //   office.slide {dir next|prev} / office.event {kind phone|whisper|stare|auto_on|auto_off}
-//   office.line {index 1-7} / office.subtitles {on} / office.ask {text, voice, audioUrl}
-// Telemetry section "office": phase, level, minutes, slide, slideCount, autoEvents, subtitles, anxietyBefore/After.
+//   office.line {index 1-7} / office.subtitles {on} / office.ask {text, voice, audioUrl} / office.rate {value 0-10}
+// Telemetry section "office": phase, level, minutes, slide, slideCount, autoEvents, subtitles, anxietyBefore/After, awaitingRating.
 public class OfficeRemote : MonoBehaviour
 {
     public static bool EditorLicense = false;
@@ -34,6 +34,7 @@ public class OfficeRemote : MonoBehaviour
     [Serializable] class LinePayload { public int index; }
     [Serializable] class SubtitlesPayload { public bool on; }
     [Serializable] class AskPayload { public string text; public string voice; public string audioUrl; }
+    [Serializable] class RatePayload { public int value; }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     static void Boot()
@@ -63,12 +64,19 @@ public class OfficeRemote : MonoBehaviour
         Register("office.line", cmd => Session.RemoteLine(cmd.PayloadAs<LinePayload>().index) ? Ok : PresentingOnly);
         Register("office.subtitles", cmd => { Session.subtitles = cmd.PayloadAs<SubtitlesPayload>().on; return Ok; });
         Register("office.ask", OnAsk);
+        // anxiety 0-10 = the doctor's Ctrl+0-9: answers the open question, or is noted during the presentation
+        Register("office.rate", cmd =>
+        {
+            if (!Session.AwaitingRating && Session.Phase != "presentation") return CommandResult.Fail("no_rating_open");
+            Session.Rate(cmd.PayloadAs<RatePayload>().value);
+            return Ok;
+        });
         MqttCommandManager.SetTelemetrySection("office", TelemetryJson);
     }
 
     void OnDisable()
     {
-        foreach (var t in new[] { "office.level", "office.duration", "office.start", "office.end", "office.slide", "office.event", "office.line", "office.subtitles", "office.ask" })
+        foreach (var t in new[] { "office.level", "office.duration", "office.start", "office.end", "office.slide", "office.event", "office.line", "office.subtitles", "office.ask", "office.rate" })
             MqttCommandManager.UnregisterHandler(t);
         MqttCommandManager.RemoveTelemetrySection("office");
     }
@@ -132,7 +140,7 @@ public class OfficeRemote : MonoBehaviour
     void Update()
     {
         if (Session == null) return;
-        string state = Session.Phase + "|" + Session.level + "|" + Session.duration + "|" + Session.Slide + "|" + Session.autoEvents + "|" + Session.subtitles + "|" + Session.AnxietyBefore + "|" + Session.AnxietyAfter;
+        string state = Session.Phase + "|" + Session.level + "|" + Session.duration + "|" + Session.Slide + "|" + Session.autoEvents + "|" + Session.subtitles + "|" + Session.AnxietyBefore + "|" + Session.AnxietyAfter + "|" + Session.AwaitingRating;
         if (state == lastState) return;
         lastState = state;
         MqttCommandManager.RequestTelemetry();   // update the panel without waiting for the 10 s interval
@@ -167,6 +175,7 @@ public class OfficeRemote : MonoBehaviour
         sb.Append(",\"subtitles\":").Append(s.subtitles ? "true" : "false");
         sb.Append(",\"anxietyBefore\":").Append(s.AnxietyBefore >= 0 ? s.AnxietyBefore.ToString(inv) : "null");
         sb.Append(",\"anxietyAfter\":").Append(s.AnxietyAfter >= 0 ? s.AnxietyAfter.ToString(inv) : "null");
+        sb.Append(",\"awaitingRating\":").Append(s.AwaitingRating ? "true" : "false");
         sb.Append('}');
         return sb.ToString();
     }

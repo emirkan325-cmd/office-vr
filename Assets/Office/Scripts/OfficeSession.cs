@@ -324,6 +324,8 @@ public class OfficeSession : MonoBehaviour
     public int AnxietyBefore => pre;
     public int AnxietyAfter => post;
     public int SlideCount => slides != null ? slides.Length : 0;
+    // the 0-10 question is open in the headset (before / after the presentation)
+    public bool AwaitingRating => rating && rating.gameObject.activeSelf && buttonsRow && buttonsRow.activeSelf;
 
     public bool RemoteSetLevel(int lv)
     {
