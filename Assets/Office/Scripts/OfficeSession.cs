@@ -9,13 +9,13 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 // Presentation in front of the team (all patient-facing text in German).
-//   menu (Stufe 1-3, duration) -> anxiety 0-10 -> the presentation (slides on the wall screen, timer panel on the table,
+//   menu (Stufe 1-3, duration) -> the presentation (slides on the wall screen, timer panel on the table,
 //   participants react according to the level, questions / disturbances at fixed moments) -> closing words + knocking
-//   -> anxiety 0-10 -> office_sessions.csv (numbers only, nothing is recorded) -> menu.
+//   -> office_sessions.csv (numbers only, nothing is recorded) -> menu. (No anxiety rating: removed 2026-11-17 on request.)
 // Stufe 1 Freundlich: 4 attentive, nodding colleagues, one kind remark.
 // Stufe 2 Neutral:    7 people, some look at their laptops, two factual questions.
 // Stufe 3 Kritisch:   7 people, distracted / sceptical, phone buzzes, critical questions, time pressure.
-// Doctor (PC window): F1-F3 start a level, F12 end, arrows = slides, Q/W/R... see the panel, Ctrl+0-9 anxiety, T subtitles, E English.
+// Doctor (PC window): F1-F3 start a level, F12 end, arrows = slides, Q/W/R... see the panel, T subtitles, E English.
 // Patient: right trigger / A = next slide, left trigger / X = previous slide, or the buttons on the table panel.
 public class OfficeSession : MonoBehaviour
 {
@@ -68,14 +68,13 @@ public class OfficeSession : MonoBehaviour
     public int Slide { get; private set; }
     public readonly List<string> log = new List<string>();
 
-    int pre = -1, post = -1, picked = -1, eventCount, slideMax;
+    int eventCount, slideMax;
     bool start, endTalk, asking, silenceStare;
-    float talkStart; DateTime started; string midRatings = "";
+    float talkStart; DateTime started;
     readonly HashSet<string> fired = new HashSet<string>();
 
     Canvas menu, rating, tablePanel;
     Text question, hint, tTime, tSlide, tState; Image speakDot;
-    GameObject buttonsRow;
     readonly List<(Image img, Func<bool> on)> toggles = new List<(Image, Func<bool>)>();
     static readonly Color Sel = new Color(0.30f, 0.52f, 0.62f), Unsel = new Color(0.3f, 0.29f, 0.28f);
     TextMesh sub; float subUntil;
@@ -139,10 +138,7 @@ public class OfficeSession : MonoBehaviour
     IEnumerator Talk()
     {
         ApplyLevel();
-        Phase = "rating before";
-        pre = -1; yield return Ask("Wie aufgeregt sind Sie gerade?", "0 = völlig ruhig   ·   10 = extrem aufgeregt", v => pre = v);
-
-        Phase = "presentation"; started = DateTime.Now; endTalk = false; eventCount = 0; slideMax = 0; midRatings = ""; fired.Clear(); log.Clear();
+        Phase = "presentation"; started = DateTime.Now; endTalk = false; eventCount = 0; slideMax = 0; fired.Clear(); log.Clear();
         SetSlide(0);
         foreach (var l in Active) l.LookAtPatient(4f);
         yield return new WaitForSeconds(1.2f);
@@ -187,26 +183,13 @@ public class OfficeSession : MonoBehaviour
         }
         yield return new WaitForSeconds(canClap ? secs + 1.5f : 1.5f);
 
-        Phase = "rating after";
-        post = -1; yield return Ask("Und wie aufgeregt sind Sie jetzt?", "0 = völlig ruhig   ·   10 = extrem aufgeregt", v => post = v);
         Save(talked);
         ShowMessage("Gut gemacht!", "Die Sitzung wurde gespeichert.");
         yield return new WaitForSeconds(3f);
         rating.gameObject.SetActive(false);
     }
 
-    IEnumerator Ask(string q, string h, Action<int> set)
-    {
-        question.text = q; hint.text = h; buttonsRow.SetActive(true);
-        rating.gameObject.SetActive(true);
-        picked = -1;
-        while (picked < 0) yield return null;
-        set(picked);
-        yield return new WaitForSeconds(0.4f);
-        rating.gameObject.SetActive(false);
-    }
-
-    void ShowMessage(string q, string h) { question.text = q; hint.text = h; buttonsRow.SetActive(false); rating.gameObject.SetActive(true); }
+    void ShowMessage(string q, string h) { question.text = q; hint.text = h; rating.gameObject.SetActive(true); }
     static string Fmt(float s) { int m = (int)(s / 60f); return m + ":" + ((int)(s - m * 60)).ToString("00"); }
 
     // ================================================================= events
@@ -289,7 +272,6 @@ public class OfficeSession : MonoBehaviour
         bool ctrl = Held(Key.LeftCtrl) || Held(Key.RightCtrl);
         if (ctrl)
         {
-            for (int d = 0; d <= 9; d++) if (Down(Key.Digit1 + (d + 9) % 10)) Rate(d == 0 ? 10 : d);
             if (Down(Key.Enter) && Phase == "menu") start = true;
             return;
         }
@@ -312,20 +294,9 @@ public class OfficeSession : MonoBehaviour
         level = Mathf.Clamp(lv, 1, 3); ApplyLevel(); start = true;
     }
 
-    // the doctor's rating: answers an open question, otherwise it is noted with the time
-    public void Rate(int v)
-    {
-        if (rating && rating.gameObject.activeSelf && buttonsRow.activeSelf) picked = v;
-        else if (Phase == "presentation") { midRatings += Fmt(Time.time - talkStart) + "=" + v + " "; Log("anxiety " + v); }
-    }
-
     // ================================================================= web panel (OfficeRemote, MQTT)
     // Same actions as the doctor's PC window, for the ExposiaVR web panel. false = not possible in this phase.
-    public int AnxietyBefore => pre;
-    public int AnxietyAfter => post;
     public int SlideCount => slides != null ? slides.Length : 0;
-    // the 0-10 question is open in the headset (before / after the presentation)
-    public bool AwaitingRating => rating && rating.gameObject.activeSelf && buttonsRow && buttonsRow.activeSelf;
 
     public bool RemoteSetLevel(int lv)
     {
@@ -421,10 +392,10 @@ public class OfficeSession : MonoBehaviour
             float speak = mic ? mic.SpeakingSeconds : 0f;
             using (var w = new StreamWriter(path, true))
             {
-                if (header) w.WriteLine("date;start;level;minutes_planned;minutes_talked;speaking_seconds;speaking_share;slides_shown;anxiety_before;anxiety_after;anxiety_during;events");
+                if (header) w.WriteLine("date;start;level;minutes_planned;minutes_talked;speaking_seconds;speaking_share;slides_shown;events");
                 w.WriteLine(string.Join(";", started.ToString("yyyy-MM-dd", inv), started.ToString("HH:mm", inv), level + " " + L.name, duration,
                     (talked / 60f).ToString("0.0", inv), speak.ToString("0", inv), (talked > 0 ? speak / talked : 0f).ToString("0.00", inv),
-                    (slideMax + 1) + "/" + slides.Length, pre, post, midRatings.Trim(), eventCount));
+                    (slideMax + 1) + "/" + slides.Length, eventCount));
             }
             Debug.Log("[Office] session saved to " + path);
         }
@@ -471,14 +442,6 @@ public class OfficeSession : MonoBehaviour
         var root = rating.transform;
         question = RelaxUI.Label(root, "Question", "", new Vector2(0, 150), new Vector2(1040, 120), 54, RelaxUI.TextColor);
         hint = RelaxUI.Label(root, "Hint", "", new Vector2(0, 60), new Vector2(1040, 60), 32, RelaxUI.HintColor);
-        buttonsRow = new GameObject("Buttons", typeof(RectTransform)); buttonsRow.transform.SetParent(root, false);
-        RelaxUI.Place((RectTransform)buttonsRow.transform, new Vector2(0, -110), new Vector2(1040, 120));
-        for (int i = 0; i <= 10; i++)
-        {
-            int v = i;
-            var c = Color.Lerp(new Color(0.45f, 0.62f, 0.5f), new Color(0.72f, 0.42f, 0.35f), i / 10f);
-            RelaxUI.Button(buttonsRow.transform, "B" + i, i.ToString(), new Vector2(-460 + i * 92, 0), new Vector2(82, 100), c, () => picked = v);
-        }
     }
 
     // small presenter panel lying on the table to the right of the laptop: time, slide number, slide buttons, end
@@ -572,12 +535,8 @@ public class OfficeSession : MonoBehaviour
             if (GUILayout.Button("F12  End the presentation", GUILayout.Height(30))) endTalk = true;
         }
         GUILayout.Space(4);
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Anxiety 0-10:", small, GUILayout.Width(80));
-        for (int s = 0; s <= 10; s++) if (GUILayout.Button(s.ToString(), GUILayout.Width(28))) Rate(s);
-        GUILayout.EndHorizontal();
         if (GUILayout.Button("A  automatic events of the level: " + (autoEvents ? "ON" : "OFF"), GUILayout.Height(22))) autoEvents = !autoEvents;
-        GUILayout.Label("T subtitles " + (subtitles ? "on" : "off") + "  ·  E subtitles " + (English ? "English" : "German") + "  ·  Ctrl+0-9 anxiety  ·  Ctrl+Enter start", small);
+        GUILayout.Label("T subtitles " + (subtitles ? "on" : "off") + "  ·  E subtitles " + (English ? "English" : "German") + "  ·  Ctrl+Enter start", small);
         scroll = GUILayout.BeginScrollView(scroll);
         for (int i = log.Count - 1; i >= Mathf.Max(0, log.Count - 14); i--) GUILayout.Label(log[i], small);
         GUILayout.EndScrollView();
