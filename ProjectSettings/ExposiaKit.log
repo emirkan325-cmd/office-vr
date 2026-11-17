@@ -1,0 +1,19 @@
+ExposiaVR setup
+created XRGeneralSettingsPerBuildTarget
+Android: OpenXR loader assigned=True
+Standalone: OpenXR loader assigned=True
+Android: Meta Quest Support enabled
+Android: HandInteractionProfile on
+Android: MetaHandTrackingAim on
+Android: HandTracking on
+Android: touch profile=True, single-pass instanced
+Standalone: HandInteractionProfile on
+Standalone: MetaHandTrackingAim on
+Standalone: HandTracking on
+Standalone: touch profile=True, single-pass instanced
+
+XRIT Starter Assets imported
+URP asset tuned: Assets/Settings/Mobile_RPAsset.asset
+quality level for Android: Mobile
+switch to Android: True
+

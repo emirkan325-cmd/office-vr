@@ -1,0 +1,733 @@
+{
+ "M_Alu": {
+  "color": [
+   0.4793201684951782,
+   0.4969329833984375,
+   0.520995557308197
+  ],
+  "roughness": 0.3499999940395355,
+  "metallic": 0.8999999761581421,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_BlackPlastic": {
+  "color": [
+   0.007499032188206911,
+   0.00802319310605526,
+   0.009134058840572834
+  ],
+  "roughness": 0.44999998807907104,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Blind": {
+  "color": [
+   0.7912979125976562,
+   0.7758222222328186,
+   0.715693473815918
+  ],
+  "roughness": 0.800000011920929,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_BottleClear": {
+  "color": [
+   0.68668532371521,
+   0.7605245113372803,
+   0.7454041838645935
+  ],
+  "roughness": 0.05000000074505806,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_BottleLabel": {
+  "color": [
+   0.027320891618728638,
+   0.11443537473678589,
+   0.3915724754333496
+  ],
+  "roughness": 0.6000000238418579,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Carpet": {
+  "color": [
+   0.800000011920929,
+   0.800000011920929,
+   0.800000011920929
+  ],
+  "roughness": 0.5,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0,
+  "base": "dirty_carpet_diff_2k.jpg",
+  "tint": [
+   0.8094681526358262,
+   0.8433891712280845,
+   0.8860039666877558
+  ],
+  "normal": "dirty_carpet_nor_2k.jpg",
+  "rough": "dirty_carpet_rough_2k.jpg"
+ },
+ "M_CeilGrid": {
+  "color": [
+   0.715693473815918,
+   0.715693473815918,
+   0.68668532371521
+  ],
+  "roughness": 0.5,
+  "metallic": 0.30000001192092896,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Ceiling": {
+  "color": [
+   0.8879231214523315,
+   0.8796223998069763,
+   0.838798999786377
+  ],
+  "roughness": 0.8999999761581421,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_ChairFabric": {
+  "color": [
+   0.016807375475764275,
+   0.019382361322641373,
+   0.024157632142305374
+  ],
+  "roughness": 0.949999988079071,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Chrome": {
+  "color": [
+   0.5840784311294556,
+   0.6038273572921753,
+   0.6307571530342102
+  ],
+  "roughness": 0.18000000715255737,
+  "metallic": 1.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_ClockFace": {
+  "color": [
+   0.9301108717918396,
+   0.9301108717918396,
+   0.9046611785888672
+  ],
+  "roughness": 0.4000000059604645,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Coffee": {
+  "color": [
+   0.023153366521000862,
+   0.008568125776946545,
+   0.002428215928375721
+  ],
+  "roughness": 0.30000001192092896,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_DarkSteel": {
+  "color": [
+   0.024157632142305374,
+   0.026241222396492958,
+   0.03071344457566738
+  ],
+  "roughness": 0.4000000059604645,
+  "metallic": 0.699999988079071,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Door": {
+  "color": [
+   0.838798999786377,
+   0.838798999786377,
+   0.8069522380828857
+  ],
+  "roughness": 0.44999998807907104,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Facade": {
+  "color": [
+   0.5840784311294556,
+   0.5394794940948486,
+   0.4564110338687897
+  ],
+  "roughness": 0.8999999761581421,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_FacadeWindow": {
+  "color": [
+   0.0423114113509655,
+   0.06847816705703735,
+   0.09758734703063965
+  ],
+  "roughness": 0.15000000596046448,
+  "metallic": 0.30000001192092896,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Glass": {
+  "color": [
+   0.7230551242828369,
+   0.8069522380828857,
+   0.838798999786377
+  ],
+  "roughness": 0.029999999329447746,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Ground": {
+  "color": [
+   0.10461648553609848,
+   0.109461709856987,
+   0.1119324266910553
+  ],
+  "roughness": 0.949999988079071,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_LEDPanel": {
+  "color": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "roughness": 0.4000000059604645,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   0.9700000286102295,
+   0.9200000166893005
+  ],
+  "emission_strength": 4.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_LaptopBody": {
+  "color": [
+   0.34191441535949707,
+   0.3613067865371704,
+   0.3915724754333496
+  ],
+  "roughness": 0.3499999940395355,
+  "metallic": 0.800000011920929,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_LaptopScreen": {
+  "color": [
+   0.577580451965332,
+   0.6583748459815979,
+   0.7758222222328186
+  ],
+  "roughness": 0.30000001192092896,
+  "metallic": 0.0,
+  "emission": [
+   0.75,
+   0.8299999833106995,
+   0.949999988079071
+  ],
+  "emission_strength": 1.2000000476837158,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_MarkerInk": {
+  "color": [
+   0.011612244881689548,
+   0.028426039963960648,
+   0.15592646598815918
+  ],
+  "roughness": 0.6000000238418579,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_MarkerRed": {
+  "color": [
+   0.43415364623069763,
+   0.023153366521000862,
+   0.01599629409611225
+  ],
+  "roughness": 0.6000000238418579,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Paper": {
+  "color": [
+   0.9215818643569946,
+   0.9130986332893372,
+   0.8713670969009399
+  ],
+  "roughness": 0.800000011920929,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_PatientScreen": {
+  "color": [
+   0.005181516520678997,
+   0.006048833020031452,
+   0.00802319310605526
+  ],
+  "roughness": 0.30000001192092896,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 1.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Pen": {
+  "color": [
+   0.010960093699395657,
+   0.023153366521000862,
+   0.10702310502529144
+  ],
+  "roughness": 0.4000000059604645,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Picture_0": {
+  "color": [
+   0.800000011920929,
+   0.800000011920929,
+   0.800000011920929
+  ],
+  "roughness": 0.5,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0,
+  "base": "Picture_meadow_2.jpg"
+ },
+ "M_Picture_1": {
+  "color": [
+   0.800000011920929,
+   0.800000011920929,
+   0.800000011920929
+  ],
+  "roughness": 0.5,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0,
+  "base": "Picture_rolling_hills.jpg"
+ },
+ "M_Plant": {
+  "color": [
+   0.800000011920929,
+   0.800000011920929,
+   0.800000011920929
+  ],
+  "roughness": 0.699999988079071,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0,
+  "base": "potted_plant_04_diff_1k.jpg"
+ },
+ "M_Porcelain": {
+  "color": [
+   0.9130986332893372,
+   0.9046611785888672,
+   0.8713670969009399
+  ],
+  "roughness": 0.20000000298023224,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Radiator": {
+  "color": [
+   0.9046611785888672,
+   0.9046611785888672,
+   0.8879231214523315
+  ],
+  "roughness": 0.3499999940395355,
+  "metallic": 0.20000000298023224,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Screen": {
+  "color": [
+   0.005181516520678997,
+   0.006048833020031452,
+   0.00802319310605526
+  ],
+  "roughness": 0.25,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 1.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Sill": {
+  "color": [
+   0.8468732237815857,
+   0.8468732237815857,
+   0.8227857351303101
+  ],
+  "roughness": 0.3499999940395355,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Skirting": {
+  "color": [
+   0.0423114113509655,
+   0.04666508734226227,
+   0.05448027700185776
+  ],
+  "roughness": 0.5,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_SoftGlass": {
+  "color": [
+   0.715693473815918,
+   0.8069522380828857,
+   0.7912979125976562
+  ],
+  "roughness": 0.03999999910593033,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_TableTop": {
+  "color": [
+   0.800000011920929,
+   0.800000011920929,
+   0.800000011920929
+  ],
+  "roughness": 0.5,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0,
+  "base": "white_oak_veneer_diff_2k.jpg",
+  "normal": "white_oak_veneer_nor_2k.jpg",
+  "rough": "white_oak_veneer_rough_2k.jpg"
+ },
+ "M_Thermos": {
+  "color": [
+   0.4564110338687897,
+   0.47353148460388184,
+   0.4969329833984375
+  ],
+  "roughness": 0.25,
+  "metallic": 1.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Wall": {
+  "color": [
+   0.800000011920929,
+   0.800000011920929,
+   0.800000011920929
+  ],
+  "roughness": 0.5,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0,
+  "base": "white_plaster_02_diff_2k.jpg",
+  "normal": "white_plaster_02_nor_2k.jpg",
+  "rough": "white_plaster_02_rough_2k.jpg"
+ },
+ "M_WallAccent": {
+  "color": [
+   0.04970656707882881,
+   0.11443537473678589,
+   0.14702726900577545
+  ],
+  "roughness": 0.8500000238418579,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_WhiteLaminate": {
+  "color": [
+   0.8713670969009399,
+   0.8631572127342224,
+   0.8307698965072632
+  ],
+  "roughness": 0.4000000059604645,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_Whiteboard": {
+  "color": [
+   0.9646862745285034,
+   0.9646862745285034,
+   0.9646862745285034
+  ],
+  "roughness": 0.11999999731779099,
+  "metallic": 0.0,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ },
+ "M_WindowFrame": {
+  "color": [
+   0.03433980792760849,
+   0.0382043719291687,
+   0.045186202973127365
+  ],
+  "roughness": 0.4000000059604645,
+  "metallic": 0.6000000238418579,
+  "emission": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "emission_strength": 0.0,
+  "tiling": 1.0,
+  "coat": 0.0
+ }
+}

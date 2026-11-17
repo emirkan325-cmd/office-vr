@@ -1,0 +1,23 @@
+textures configured: 15
+materials in json: 42
+fbx reimported, remapped 42
+
+materials tuned
+environment: static 108
+lights: panels 6
+Business_Female_01: already imported
+Business_Female_03: already imported
+Business_Female_04: already imported
+Business_Male_01: already imported
+Business_Male_02: already imported
+Business_Male_03: already imported
+Business_Male_04: already imported
+
+clips 39
+E hips: f_sit_chair_idle_neutral_01 (0.00, 0.61, 0.04), f_sit_chair_idle_neutral_02 (0.01, 0.61, 0.03), f_sit_chair_idle_relaxed_01 (0.01, 0.61, 0.03), f_sit_chair_idle_look_around (0.01, 0.61, 0.03), f_sit_chair_idle_waiting_01 (0.01, 0.61, 0.04), Seated_Clap (-0.01, 0.51, 0.03)
+S0 hips: f_sit_chair_idle_neutral_01 (0.00, 0.63, 0.03), f_sit_chair_idle_neutral_02 (0.01, 0.63, 0.03), f_sit_chair_idle_relaxed_01 (0.01, 0.64, 0.03), f_sit_chair_idle_look_around (0.01, 0.63, 0.03), f_sit_chair_idle_waiting_01 (0.01, 0.63, 0.04), Seated_Clap (-0.01, 0.53, 0.04)
+people 7
+rig at (-1.20, 0.00, -2.40)
+session: slides 6, listeners 7
+sky True
+scene saved Assets/Office/Scenes/Besprechung.unity

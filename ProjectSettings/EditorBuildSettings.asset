@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Office/Scenes/Besprechung.unity
+    guid: e0d4d89213452de45a940185893a1ec7
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: a244e9421563cff4a8cde8ee67d9d813, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: a98c50a98fb871448bba7b5cfd17de69, type: 2}
